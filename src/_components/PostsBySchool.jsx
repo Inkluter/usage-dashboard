@@ -42,7 +42,7 @@ export const data = {
         {
             label: 'Posts by School',
             data: labels.map(() => randomIntFromInterval(0, 100)),
-            backgroundColor: '#03fc9d',
+            backgroundColor: '#ABC767',
         },
     ],
 };
