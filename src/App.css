@@ -1,5 +1,12 @@
+/*--- main ---*/
 body {
   background: #F1F5F5;
+}
+
+/*--- common ---*/
+.subheader {
+  text-align: center;
+  margin: 10px 0 40px;
 }
 
 /*--- dashboard ---*/
@@ -13,10 +20,6 @@ body {
   text-align: center;
 }
 
-.subheader {
-  text-align: center;
-  margin: 10px 0 40px;
-}
 
 .dashboard-item {
   background: #fff;
@@ -24,10 +27,12 @@ body {
   border-radius: 8px;
 }
 
+/*--- post_distribution ---*/
 .post_distribution {
   height: 100%;
 }
 
+/*--- top_charts ---*/
 .top-charts {
   align-items: stretch;
   display: grid;
@@ -36,11 +41,11 @@ body {
   margin-top: 30px;
 }
 
+/*--- posts_by_school ---*/
+
 .posts_by_school {
   height: 100%;
 }
-
-
 
 /* --- authors --- */
 .top-authors {
@@ -81,7 +86,6 @@ body {
 
 .authors_container {
   display: flex;
-  /*align-items: center;*/
 }
 
 /* --- author --- */
