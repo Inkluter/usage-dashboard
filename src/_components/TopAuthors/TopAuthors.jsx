@@ -25,7 +25,7 @@ export const TopAuthors = () => {
                             <div className="authors_total-label">Authors</div>
                         </div>
                         <div className="authors_circles">
-                            {mockedAuthors.map((author, index) => (
+                            {mockedAuthors.map((author) => (
                                 <Author key={author.id} author={author} maxValue={maxValue} />
                             ))}
                         </div>
