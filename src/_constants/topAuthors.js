@@ -24,7 +24,7 @@ export const mockedAuthors = [
         posts: 29,
     },
     {
-        id: '4',
+        id: '5',
         name: 'Adriana Garcia',
         school: 'Ontiveros Elementary School',
         posts: 26,
