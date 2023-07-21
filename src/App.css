@@ -28,7 +28,6 @@ body {
   margin: 20px 0;
 }
 
-
 .dashboard-item {
   background: #fff;
   padding: 20px;
@@ -38,6 +37,21 @@ body {
 /*--- post_distribution ---*/
 .post_distribution {
   height: 100%;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/*--- posts_by_school ---*/
+.posts_by_school {
+  height: 100%;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 /*--- top_charts ---*/
@@ -52,12 +66,20 @@ body {
 /*--- posts_by_school ---*/
 .posts_by_school {
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 /* --- authors --- */
 .top-authors {
   margin-top: 60px;
   padding-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .authors_total {
@@ -93,6 +115,7 @@ body {
 
 .authors_container {
   display: flex;
+  width: 100%;
 }
 
 /* --- author --- */
@@ -130,6 +153,45 @@ body {
   color: #636363;
   font-size: 14px;
 }
+
+/* --- loader ---*/
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid var(--green-bg);
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: var(--green-bg) transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- loader --- */
 
 @media screen and (max-width: 992px) {
   .top-charts {

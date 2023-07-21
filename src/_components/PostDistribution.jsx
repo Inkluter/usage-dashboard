@@ -1,5 +1,8 @@
+import { useState, useEffect } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import {Chart, ArcElement, Legend} from 'chart.js'
+import { Loader } from './Loader';
+
 Chart.register(ArcElement, Legend);
 
 const data = {
@@ -31,12 +34,25 @@ const options = {
 }
 
 export const PostDistribution = () => {
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => setIsLoaded(true), 1000)
+    }, []);
+
     return (
         <div className="post_distribution dashboard-item">
-            <h2 className="subheader">Post Distribution</h2>
-            <div style={{width:'99%', height: '300px', position: 'relative'}}>
-                <Doughnut data={data} options={options} />
-            </div>
+            { !isLoaded ?
+                (
+                    <Loader />
+                ) : (
+                <>
+                    <h2 className="subheader">Post Distribution</h2>
+                    <div style={{width:'99%', height: '300px', position: 'relative'}}>
+                        <Doughnut data={data} options={options} />
+                    </div>
+                </>
+            )}
         </div>
     )
 }

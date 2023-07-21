@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -7,6 +8,8 @@ import {
     Tooltip,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { Loader } from './Loader';
+
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -48,12 +51,24 @@ export const data = {
 };
 
 export const PostsBySchool = () => {
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => setIsLoaded(true), 1000)
+    }, []);
+
     return (
         <div className="posts_by_school dashboard-item">
-            <h2 className="subheader">Posts By School</h2>
-            <div style={{width:'99%', height: '300px', position: 'relative'}}>
-                <Bar options={options} data={data} />
-            </div>
+            { !isLoaded ? (
+                <Loader />
+            ) : (
+                <>
+                    <h2 className="subheader">Posts By School</h2>
+                    <div style={{width:'99%', height: '300px', position: 'relative'}}>
+                        <Bar options={options} data={data} />
+                    </div>
+                </>
+            )}
         </div>
     )
 }
