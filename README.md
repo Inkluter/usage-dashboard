@@ -1,7 +1,7 @@
 Install node modules.
-`npm install`
+### `npm install`
 or
-`npm i`
+### `npm i`
 
 To run the Dashboard, run the following command:
 
