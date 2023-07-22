@@ -1,7 +1,7 @@
 import {useCallback, useEffect, useState} from 'react';
 import { Author } from './Author';
 import { Loader } from '../Loader';
-import { ApiUrl } from '../../_constants/apiUrl';
+import { ApiUrl } from '../../constants/apiUrl';
 import { getMaxCount, getTotalCount } from '../../utils/topAuthors';
 
 export const TopAuthors = () => {

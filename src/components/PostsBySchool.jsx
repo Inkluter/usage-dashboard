@@ -10,7 +10,7 @@ import {
 import { Bar } from 'react-chartjs-2';
 import { Loader } from './Loader';
 import { makePostsBySchoolData } from '../utils/makePostsBySchoolData';
-import { ApiUrl } from '../_constants/apiUrl';
+import { ApiUrl } from '../constants/apiUrl';
 
 ChartJS.register(
     CategoryScale,

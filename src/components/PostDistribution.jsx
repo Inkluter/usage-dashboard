@@ -3,7 +3,7 @@ import { Doughnut } from 'react-chartjs-2';
 import {Chart, ArcElement, Legend} from 'chart.js'
 import { Loader } from './Loader';
 import { makeDistributionData } from '../utils/makeDistributionData';
-import { ApiUrl } from '../_constants/apiUrl';
+import { ApiUrl } from '../constants/apiUrl';
 
 Chart.register(ArcElement, Legend);
 
