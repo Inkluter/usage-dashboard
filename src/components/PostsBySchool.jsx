@@ -30,6 +30,15 @@ export const options = {
             display: false,
         },
     },
+    scales: {
+        x1: {
+            ticks: {
+                autoSkip: false,
+                maxRotation: 90,
+                minRotation: 90
+            }
+        }
+    }
 };
 
 export const PostsBySchool = () => {

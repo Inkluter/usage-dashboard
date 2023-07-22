@@ -6,6 +6,7 @@ export const makePostsBySchoolData = (data) => {
                 label: 'Posts by School',
                 data: data.map(({ count }) => count),
                 backgroundColor: '#ABC767',
+                xAxisID: 'x1',
             },
         ],
     }
