@@ -4,7 +4,7 @@ import {Chart, ArcElement, Legend} from 'chart.js'
 import { Loader } from './Loader';
 import { makeDistributionData } from '../utils/makeDistributionData';
 import { ApiUrl } from '../constants/apiUrl';
-import { isProd } from "../utils/isProd";
+import { isProd } from '../utils/isProd';
 import { postDistributionMocked } from '../constants/postDistribution';
 
 Chart.register(ArcElement, Legend);
