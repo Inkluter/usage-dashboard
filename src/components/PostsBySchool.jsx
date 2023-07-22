@@ -32,41 +32,6 @@ export const options = {
     },
 };
 
-function randomIntFromInterval(min, max) { // min and max included
-    return Math.floor(Math.random() * (max - min + 1) + min)
-}
-
-
-const labels = [
-    'Adam Elementary School',
-    'Alvin Elementary School',
-    'Baker Elementary School',
-    'Baker Middle School',
-    'Baker High School',
-    'Sam Houston Elementary School',
-    'Sam Houston Middle School',
-    'Sanchez Elementary School',
-    'Sanchez Middle School',
-    'Sanchez High School',
-    'Smith Elementary School',
-    'Smith Middle School',
-    'Smith High School',
-    'Washington Elementary School',
-    'Washington Middle School',
-    'Washington High School',
-];
-
-export const data = {
-    labels,
-    datasets: [
-        {
-            label: 'Posts by School',
-            data: labels.map(() => randomIntFromInterval(0, 300)),
-            backgroundColor: '#ABC767',
-        },
-    ],
-};
-
 export const PostsBySchool = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [postsBySchool, setPostsBySchool] = useState(null);
