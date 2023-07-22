@@ -37,13 +37,13 @@ export const PostDistribution = () => {
             setIsLoaded(true)
         }
 
-        if (isProd) {
+        if (isProd()) {
             setTimeout(() => {
                 setPostDistribution(makeDistributionData(postDistributionMocked));
                 setIsLoaded(true)
             }, 1000);
         } else {
-            fetchData();
+            fetchData().catch((e) => { console.warn(e)} );
         }
     }, [fetchPostDistribution]);
 

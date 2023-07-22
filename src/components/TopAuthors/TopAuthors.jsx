@@ -27,13 +27,13 @@ export const TopAuthors = () => {
             setIsLoaded(true)
         }
 
-        if (isProd) {
+        if (isProd()) {
             setTimeout(() => {
                 setTopAuthors(mockedAuthors);
                 setIsLoaded(true)
             }, 1000);
         } else {
-            fetchData();
+            fetchData().catch((e) => { console.warn(e)} );
         }
     }, [fetchTopAuthors]);
 

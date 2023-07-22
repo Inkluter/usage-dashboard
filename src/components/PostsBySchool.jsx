@@ -86,13 +86,13 @@ export const PostsBySchool = () => {
             setIsLoaded(true)
         }
 
-        if (isProd) {
+        if (isProd()) {
             setTimeout(() => {
                 setPostsBySchool(makePostsBySchoolData(postsBySchoolMocked));
                 setIsLoaded(true);
             }, 1000);
         } else {
-            fetchData();
+            fetchData().catch((e) => { console.warn(e)} );
         }
     }, [fetchPostsBySchool]);
 
