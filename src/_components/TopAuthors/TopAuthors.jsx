@@ -1,16 +1,34 @@
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import { Author } from './Author';
 import { Loader } from '../Loader';
-import { mockedAuthors } from '../../_constants/topAuthors';
+import { ApiUrl } from '../../_constants/apiUrl';
+import { getMaxCount, getTotalCount } from '../../utils/topAuthors';
 
 export const TopAuthors = () => {
     const [isLoaded, setIsLoaded] = useState(false);
-    const totalCount = mockedAuthors.reduce((acc, curr) => acc + curr.posts, 0);
-    const maxValue = Math.max(...mockedAuthors.map(author => author.posts));
+    const [topAuthors, setTopAuthors] = useState(null);
+    const totalCount = getTotalCount(topAuthors);
+    const maxValue = getMaxCount(topAuthors);
+
+    const fetchTopAuthors = useCallback(async () => {
+        const response = await fetch(`${ApiUrl.BASE_URL}${ApiUrl.TOP_AUTHORS}`);
+
+        const data = await response.json();
+        return data;
+    }, []);
+
+    console.log(maxValue)
 
     useEffect(() => {
-        setTimeout(() => setIsLoaded(true), 1000)
-    }, []);
+        const fetchData = async () => {
+            const data = await fetchTopAuthors();
+
+            setTopAuthors(data);
+            setIsLoaded(true)
+        }
+
+        fetchData();
+    }, [fetchTopAuthors]);
 
     return (
         <div className="top-authors dashboard-item">
@@ -25,7 +43,7 @@ export const TopAuthors = () => {
                             <div className="authors_total-label">Authors</div>
                         </div>
                         <div className="authors_circles">
-                            {mockedAuthors.map((author) => (
+                            {topAuthors.map((author) => (
                                 <Author key={author.id} author={author} maxValue={maxValue} />
                             ))}
                         </div>

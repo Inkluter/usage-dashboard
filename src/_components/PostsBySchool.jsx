@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -9,6 +9,8 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { Loader } from './Loader';
+import { makePostsBySchoolData } from '../utils/makePostsBySchoolData';
+import { ApiUrl } from '../_constants/apiUrl';
 
 ChartJS.register(
     CategoryScale,
@@ -25,10 +27,6 @@ export const options = {
         legend: {
             display: false,
         },
-        title: {
-            display: true,
-            text: 'Chart.js Bar Chart',
-        },
     },
 };
 
@@ -37,14 +35,31 @@ function randomIntFromInterval(min, max) { // min and max included
 }
 
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+const labels = [
+    'Adam Elementary School',
+    'Alvin Elementary School',
+    'Baker Elementary School',
+    'Baker Middle School',
+    'Baker High School',
+    'Sam Houston Elementary School',
+    'Sam Houston Middle School',
+    'Sanchez Elementary School',
+    'Sanchez Middle School',
+    'Sanchez High School',
+    'Smith Elementary School',
+    'Smith Middle School',
+    'Smith High School',
+    'Washington Elementary School',
+    'Washington Middle School',
+    'Washington High School',
+];
 
 export const data = {
     labels,
     datasets: [
         {
             label: 'Posts by School',
-            data: labels.map(() => randomIntFromInterval(0, 100)),
+            data: labels.map(() => randomIntFromInterval(0, 300)),
             backgroundColor: '#ABC767',
         },
     ],
@@ -52,10 +67,25 @@ export const data = {
 
 export const PostsBySchool = () => {
     const [isLoaded, setIsLoaded] = useState(false);
+    const [postsBySchool, setPostsBySchool] = useState(null);
+
+    const fetchPostsBySchool = useCallback(async () => {
+        const response = await fetch(`${ApiUrl.BASE_URL}${ApiUrl.POSTS_BY_SCHOOL}`);
+
+        const data = await response.json();
+        return data;
+    }, []);
 
     useEffect(() => {
-        setTimeout(() => setIsLoaded(true), 1000)
-    }, []);
+        const fetchData = async () => {
+            const data = await fetchPostsBySchool();
+
+            setPostsBySchool(makePostsBySchoolData(data));
+            setIsLoaded(true)
+        }
+
+        fetchData();
+    }, [fetchPostsBySchool]);
 
     return (
         <div className="posts_by_school dashboard-item">
@@ -65,7 +95,7 @@ export const PostsBySchool = () => {
                 <>
                     <h2 className="subheader">Posts By School</h2>
                     <div style={{width:'99%', height: '300px', position: 'relative'}}>
-                        <Bar options={options} data={data} />
+                        <Bar options={options} data={postsBySchool} />
                     </div>
                 </>
             )}
