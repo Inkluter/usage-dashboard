@@ -11,6 +11,8 @@ import { Bar } from 'react-chartjs-2';
 import { Loader } from './Loader';
 import { makePostsBySchoolData } from '../utils/makePostsBySchoolData';
 import { ApiUrl } from '../constants/apiUrl';
+import { isProd } from "../utils/isProd";
+import { postsBySchoolMocked } from '../constants/postsBySchool';
 
 ChartJS.register(
     CategoryScale,
@@ -84,7 +86,14 @@ export const PostsBySchool = () => {
             setIsLoaded(true)
         }
 
-        fetchData();
+        if (isProd) {
+            setTimeout(() => {
+                setPostsBySchool(makePostsBySchoolData(postsBySchoolMocked));
+                setIsLoaded(true);
+            }, 1000);
+        } else {
+            fetchData();
+        }
     }, [fetchPostsBySchool]);
 
     return (

@@ -4,6 +4,8 @@ import {Chart, ArcElement, Legend} from 'chart.js'
 import { Loader } from './Loader';
 import { makeDistributionData } from '../utils/makeDistributionData';
 import { ApiUrl } from '../constants/apiUrl';
+import { isProd } from "../utils/isProd";
+import { postDistributionMocked } from '../constants/postDistribution';
 
 Chart.register(ArcElement, Legend);
 
@@ -35,7 +37,14 @@ export const PostDistribution = () => {
             setIsLoaded(true)
         }
 
-        fetchData();
+        if (isProd) {
+            setTimeout(() => {
+                setPostDistribution(makeDistributionData(postDistributionMocked));
+                setIsLoaded(true)
+            }, 1000);
+        } else {
+            fetchData();
+        }
     }, [fetchPostDistribution]);
 
     return (

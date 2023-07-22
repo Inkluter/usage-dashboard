@@ -3,6 +3,8 @@ import { Author } from './Author';
 import { Loader } from '../Loader';
 import { ApiUrl } from '../../constants/apiUrl';
 import { getMaxCount, getTotalCount } from '../../utils/topAuthors';
+import { isProd } from "../../utils/isProd";
+import { mockedAuthors } from '../../constants/topAuthors';
 
 export const TopAuthors = () => {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -17,8 +19,6 @@ export const TopAuthors = () => {
         return data;
     }, []);
 
-    console.log(maxValue)
-
     useEffect(() => {
         const fetchData = async () => {
             const data = await fetchTopAuthors();
@@ -27,7 +27,14 @@ export const TopAuthors = () => {
             setIsLoaded(true)
         }
 
-        fetchData();
+        if (isProd) {
+            setTimeout(() => {
+                setTopAuthors(mockedAuthors);
+                setIsLoaded(true)
+            }, 1000);
+        } else {
+            fetchData();
+        }
     }, [fetchTopAuthors]);
 
     return (
