@@ -88,13 +88,13 @@ export const PostsBySchool = () => {
     }, [fetchPostsBySchool]);
 
     return (
-        <div className="posts_by_school dashboard-item">
+        <div className="posts_by_school top-chart dashboard-item">
             { !isLoaded ? (
                 <Loader />
             ) : (
                 <>
                     <h2 className="subheader">Posts By School</h2>
-                    <div style={{width:'99%', height: '300px', position: 'relative'}}>
+                    <div className="chart-wrapper">
                         <Bar options={options} data={postsBySchool} />
                     </div>
                 </>

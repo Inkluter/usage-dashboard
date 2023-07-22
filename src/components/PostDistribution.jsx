@@ -39,14 +39,14 @@ export const PostDistribution = () => {
     }, [fetchPostDistribution]);
 
     return (
-        <div className="post_distribution dashboard-item">
+        <div className="post_distribution top-chart dashboard-item">
             { !isLoaded ?
                 (
                     <Loader />
                 ) : (
                 <>
                     <h2 className="subheader">Post Distribution</h2>
-                    <div style={{width:'99%', height: '300px', position: 'relative'}}>
+                    <div className="chart-wrapper">
                         <Doughnut data={postDistribution} options={options} />
                     </div>
                 </>
